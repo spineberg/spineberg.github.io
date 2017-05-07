@@ -1,11 +1,13 @@
-html {
+html{
+	overflow:scroll;
     background-color: #bbbbbb;
 	background-image: url("img/bg.png");
     padding: 0px;
 }
-body {
+body{
     width: 80%;
-    min-height: calc(100vh - 4em);
+	display: fixed;
+    min-height: calc(120vh);
     margin: 0 auto;
     padding: 2em;
     background-color: #dddddd;
@@ -14,32 +16,29 @@ body {
     border-right-style: solid;
     border-width: 20px;
 	font-family: 'Roboto', sans-serif;
+	-webkit-user-select: none;  
+	-moz-user-select: none;    
+	-ms-user-select: none;      
+	user-select: none;
 }
-
 footer{
 	background-color: #f1f1f1;
 	color:#777;
 	text-align: center;
 	font-family:inherit;
+	position:inline;
+	padding: 1rem;
 }
 
-p {
+p{
     color: #444444;
     font-family: 'Roboto', sans-serif;
     font-size: 16pt;
     line-height: 1;
     margin: 4pt;
 }
-h1 {
-    color: #222222;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 56pt;
-    text-align: center;
-    line-height: 56pt;
-    margin-top: 0pt;
-    margin-bottom: 0pt;
-}
-h2 {
+
+h1{
     color: #333333;
     font-family: 'Montserrat', sans-serif;
     font-size: 48pt;
@@ -50,45 +49,84 @@ h2 {
 	text-align: center;
 	position:relative;
 }
-li {
+h2{
+    color: #222222;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 36pt;
+    text-align: center;
+    line-height: 56pt;
+    margin-top: 0pt;
+    margin-bottom: 0pt;
+}
+h3{
+	color:#222222;
+	font-family: 'Montserrat', sans-serif;
+    font-size: 24pt;
+    line-height: 32pt;
+    margin-top: 8pt;
+    margin-bottom: 8pt;
+    margin-left:36pt;
+}
+li{
     font-size: 16pt;
     text-indent: 16pt;
 }
-a {
+a{
     font-family: inherit;
 }
-img.center {
+img.center{
     display: block;
     margin: 1em auto;
     width: 50%;
     min-width: 500pt;
 }
-
 img.left-img{
 	margin-top: -64pt;
 	margin-left: 135px;
+	margin-bottom:8pt;
 	float: left;
 }
-
 img.right-img{
 	margin-top: -64pt;
+	margin-bottom:8pt;
 	float: right;
 }
-
-div.axis {
-    width: 100%;
+div.index-axis{
     display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-div.bar {
-    height: 18pt;
-    line-height: 18pt;
-    padding: 2pt;
+	height: 28pt;
+    line-height: 28pt;
+	padding: 2pt;
     margin-top: 4pt;
     margin-bottom: 4pt;
     border-width: 4px;
+    align-items: center;
+    justify-content: center;
+}
+div.axis{
+    width: 100%;
+    display: flex;
+	height: 18pt;
+    line-height: 18pt;
+	padding: 2pt;
+    margin-top: 4pt;
+    margin-bottom: 4pt;
+    border-width: 4px;
+    align-items: center;
+    justify-content: center;
+	transition: 0.3s;
+}
+div.axis:hover{
+	height: 36pt;
+    line-height: 36pt;
+    font-size: 16pt;
+    font-weight: bold;
+	transition: 0.3s;
+}
+div.bar{
+    height: inherit;
+    line-height: inherit;
+	padding-left: 4pt;
+	padding-right: 4pt;
     border-right-width: 1px;
 	border-left-width:1px;
     border-style: solid;
@@ -98,94 +136,91 @@ div.bar {
     width: 50%;
 	transition: 0.3s;
 }
-
-div.bar:hover{
-    height: 24pt;
-    line-height: 24pt;
-	font-weight: bold;
-	transition: 0.3s;
+div#indx{
+	min-height:100vh;
 }
-
-div.text-wrapper {
+div#index-menu{
+	background-color:#d9d9d9;
+	float:left;
+	width:20%;
+	display:block;
+	height: 550px;
+	overflow: scroll;
+}
+div#index-chart{
+	float: right;
+	width:75%;
+	display:table;
+}
+div.text-wrapper{
     font-family: 'Montserrat', sans-serif;
-    font-size: 36pt;
-    line-height: 36pt;
+    font-size: 24pt;
+    line-height: 24pt;
     color: #222;
     display: inline-block;
 }
-div.equality {
+div.equality{
     background-color: #f44336;
 	color:#eee;
     text-align: left;
     border-right-style: solid;
 	display: table-cell;
 }
-div.wealth {
+div.wealth{
     background-color: #00897b;
 	color:#eee;
     text-align: right;
     border-left-style: solid;
 	display: table-cell;
 }
-div.liberty {
+div.liberty{
     background-color: #e1d623;
     text-align: left;
     border-right-style: solid;
 	display: table-cell;
 }
-div.authority {
+div.authority{
     background-color: #3f51b5;
 	color:#eee;
     text-align: right;
     border-left-style: solid;
 	display: table-cell;
 }
-div.peace {
+div.peace{
     background-color: #03a9f4;
     text-align: right;
     border-left-style: solid;
 	display: table-cell;
 }
-div.might {
+div.might{
     background-color: #ff9800;
     text-align: left;
     border-right-style: solid;
 	display: table-cell;
 }
-div.progress {
+div.progress{
     background-color: #9c27b0;
 	color:#eee;
     text-align: right;
     border-left-style: solid;
 	display: table-cell;
 }
-div.tradition {
+div.tradition{
     background-color: #8bc34a;
     text-align: left;
     border-right-style: solid;
 	display: table-cell;
 }
-span.weight-300 {
+span.weight-300{
     font-weight: 300;
 }
-canvas {
-    border-color: #444444;
-    border-style: solid;
-    border-width: 2px;
-    border-radius: 8pt;
-    display: block;
-    margin: 8pt;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-div.tab {
+div.tab{
     overflow: hidden;
     border: 1px solid #ccc;
     background-color: #f1f1f1;
+    margin-top: -2em;
 }
-
-div.tab button {
+div.tab button{
     background-color: inherit;
     float: left;
     border: none;
@@ -193,24 +228,60 @@ div.tab button {
     cursor: pointer;
     padding: 14px 16px;
     transition: 0.3s;
+    color: #272727;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
 }
-
-div.tab button:hover {
+div.tab button:hover{
     background-color: #ddd;
 }
-
-div.tab button.active {
+div.tab button.active{
     background-color: #ccc;
 }
-.tabcontent {
+.tabcontent{
     display: none;
     padding: 6px 12px;
     border: 1px solid #ccc;
     border-top: none;
 }
-
+div#index-menu button{
+	text-align: left;
+	width: 100%;
+	background-color: inherit;
+    border: 0px;
+    outline: none;
+    cursor: pointer;
+    padding: 6px 6px;
+    transition: 0.3s;
+    color: #272727;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    font-size: 16pt;
+    transition: 0.3s;
+}
+div#index-menu button.active{
+	text-align: center;
+	background-color: #aaa;
+	transition: 0.3s;
+}
 p.nametag{
 	width: 135px;
 	text-align: right;
 	margin-right: 8pt;
+	transition: 0.3s;
+}
+.axis:hover > .nametag{
+		color:#272727;
+		font-weight:bold;
+		transition: 0.3s;		
+}
+.tooltip .tooltiptext {
+	visibility: hidden;
+    width: 240px;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -120px; /* Use half of the width (120/2 = 60), to center the tooltip */
+} 
+.tooltiptext {
+    visibility: visible;
 }

@@ -7,51 +7,83 @@
 		<link href='style.css' rel='stylesheet' type='text/css'>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 		<script type="application/javascript" src="charts.js"></script>
+		<script type="application/javascript" src="ideologies.js"></script>
 		<script src="https://spreadsheets.google.com/feeds/cells/1wE-I50zOnVoK2L-31B177NfiQmd-uczEoQZ2i9B6zMM/1/public/values?alt=json-in-script&callback=doData"></script>
-		<script type="text/javascript">window.onload = function() {document.getElementById("defOpen").click();}</script>
+		<script type="text/javascript">window.onload = function() {document.getElementById("defOpen").click();document.getElementById("defIndex").click();}</script>
 		<meta charset="utf-8">
 	</head>
 <body>
 	<div class="tab">
-		<!-- <button class="tablinks" onclick="openChart(event,'home')")>Home</button> -->
-		<button id="defOpen"  class="tablinks" onclick="openChart(event, 'econ')">Economy</button>
+		<button id="defOpen" class="tablinks" onclick="openChart(event,'indx')")>Index</button>
+		<button class="tablinks" onclick="openChart(event, 'econ')">Economy</button>
 		<button class="tablinks" onclick="openChart(event, 'dipl')">Diplomacy</button>
 		<button class="tablinks" onclick="openChart(event, 'govt')">Government</button>
 		<button class="tablinks" onclick="openChart(event, 'soci')">Society</button>
-		<!-- <button class="tablinks" onclick="openChart(event, 'summ')">Summary</button> -->
 	</div>	
 	
-<!-- 	<div id="home" class="tabcontent">
-		<h1>Clique 8values Results<span class="weight-300"></span></h1>
-		<p>Gonna get a brief rundown of information here soon.</p>
-	</div>	 -->
+	<div id="indx" class="tabcontent">
+		<div id="index-menu">
+			<button id="defIndex" class="indexlinks" onclick="openResult(event, -1)"><i>Group Average</i></button><br />
+<!--
+			<button class="indexlinks" onclick="openResult(event, -2)">Group Median</button>
+-->
+		<hr>
+		</div>
+		<div id="index-chart">
+		<h2><div id="index-nametag"></div></h2>
+
+		<h3>Economic Axis: <span id="econ-label" class="weight-300"></span></span></h3>
+		<div class="index-axis">
+			<img id="img-equality" src="img/equality.svg" height="72pt"/>
+			<div class="bar equality" id="index-bar-equality"><div class="text-wrapper" id="equality"></div></div>
+			<div class="bar wealth" id="index-bar-wealth"><div class="text-wrapper" id="wealth"></div></div>
+			<img id="img-wealth" src="img/wealth.svg" height="72pt"/>
+		</div>
+		<h3>Diplomatic Axis: <span id="dipl-label" class="weight-300"></span></h3>
+		<div class="index-axis">
+			<img id="img-might" src="img/might.svg" height="72pt"/>
+			<div class="bar might" id="index-bar-might"><div class="text-wrapper" id="might"></div></div>
+			<div class="bar peace" id="index-bar-peace"><div class="text-wrapper" id="peace"></div></div>
+			<img id="img-peace" src="img/peace.svg" height="72pt"/>
+		</div>
+		<h3>Civil Axis: <span id="govt-label" class="weight-300"></span></h3>
+		<div class="index-axis">
+			<img id="img-liberty" src="img/liberty.svg" height="72pt"/>
+			<div class="bar liberty" id="index-bar-liberty"><div class="text-wrapper" id="liberty"></div></div>
+			<div class="bar authority" id="index-bar-authority"><div class="text-wrapper" id="authority"></div></div>
+			<img id="img-authority" src="img/authority.svg" height="72pt"/>
+		</div>
+		<h3>Societal Axis: <span id="soci-label" class="weight-300"></span></h3>
+		<div class="index-axis">
+			<img id="img-tradition" src="img/tradition.svg" height="72pt"/>
+			<div class="bar tradition" id="index-bar-tradition"><div class="text-wrapper" id="tradition"></div></div>
+			<div class="bar progress" id="index-bar-progress"><div class="text-wrapper" id="progress"></div></div>
+			<img id="img-progress" src="img/progress.svg" height="72pt"/>
+		</div>
+		<h3>Closest Match: <span class="weight-300" id="ideology-label"></span></h3>
+		</div>
+	</div>
 	<div id="econ" class="tabcontent">
-		<h2>Economic Axis<span class="weight-300" id="economic-label"></span></h2>
+		<h1>Economic Axis<span class="weight-300" id="economic-label"></span></h1>
 		<img id="img-equality" class="left-img" src="img/equality.svg" height="128pt"/>
 		<img id="img-wealth" class="right-img" src="img/wealth.svg" height="128pt"/>
 	</div>
 	<div id="dipl" class="tabcontent">
-		<h2>Diplomatic Axis<span class="weight-300" id="diplomatic-label"></span></h2>
+		<h1>Diplomatic Axis<span class="weight-300" id="diplomatic-label"></span></h1>
 		<img id="img-might" class="left-img" src="img/might.svg" height="128pt"/>
 		<img id="img-peace" class="right-img" src="img/peace.svg" height="128pt"/>
 	</div>
 	<div id="govt" class="tabcontent">
-		<h2>Governmental Axis<span class="weight-300" id="government-label"></span></h2>
+		<h1>Governmental Axis<span class="weight-300" id="government-label"></span></h1>
 		<img id="img-liberty" class="left-img" src="img/liberty.svg" height="128pt"/>
 		<img id="img-authority" class="right-img" src="img/authority.svg" height="128pt"/>
 	</div>
 	<div id="soci" class="tabcontent">
-		<h2>Societal Axis<span class="weight-300" id="society-label"></span></h2>
+		<h1>Societal Axis<span class="weight-300" id="society-label"></span></h1>
 		<img id="img-tradition" class="left-img" src="img/tradition.svg" height="128pt"/>
 		<img id="img-progress" class="right-img" src="img/progress.svg" height="128pt"/>
 	</div>
-	
-	<!-- to-do pages -->
-<!-- 	<div id="summ" class="tabcontent">
-	<h1>Summary <span class="weight-300"></span></h1>
-	<p>Still working on this one.</p>
-	</div> -->
-
+</div>
 </body>
 <footer>
 	Spineberg's 8values Group Chart -- Based on original 8values by TristanBomb -- thanks mane
