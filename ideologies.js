@@ -1,3 +1,5 @@
+// Originally from TristanBomb. Not exactly proper credit, but it's an attempt
+
 ideologies = [
     {
         "name": "Anarcho-Communism",
