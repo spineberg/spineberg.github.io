@@ -33,17 +33,49 @@ function readData(){
 var sortColumn = 0;
 
 function getArrayAvg(){
-var i;
-var col = 1;
+	var i;
+	var col = 1;
 
-for(col ; col < 5 ; col++){
-	var sum = 0;
-	
-	for(i = 0 ; i < resultsArray.length ; i++){
-		sum += parseFloat(resultsArray[i][col]);
-	}	
-	avgResult[col-1] = (sum / i).toFixed(1);
+	for(col ; col < 5 ; col++){
+		var sum = 0;
+		
+		for(i = 0 ; i < resultsArray.length ; i++){
+			sum += parseFloat(resultsArray[i][col]);
+		}	
+		avgResult[col-1] = (sum / i).toFixed(1);
+	}
 }
+function getArrayMed(){
+		var i;
+		var col = 1;
+		
+		
+		for(col ; col < 5 ; col++){
+			var tempArr = [];
+		
+		for(i = 0 ; i < resultsArray.length ; i++){
+			tempArr[i] = (resultsArray[i][col]);
+		}	
+		medResult[col-1] = median(tempArr);
+		}		
+	}
+function median(values) {
+
+    values.sort( function(a,b) {return a - b;} );
+
+    var half = Math.floor(values.length/2);
+
+    if(values.length % 2){
+        return values[half];
+    }else{
+		console.log('n' + values[half-1]);
+		console.log('m' + values[half]);
+		var evenMed = parseFloat(values[half-1]) + parseFloat(values[half]);
+		console.log('i' + evenMed);
+		evenMed/=2.0;
+		console.log('x'+evenMed);
+		return evenMed.toFixed(1);
+	}
 }
 
 function getLabel(val, axis){
@@ -198,14 +230,11 @@ function generateChart(cat, col){
 	
 		// Create nametag and bar wrapper.
 		var newBar = document.createElement('div');
-		var tooltipElement = document.createElement('span');
-		
-		tooltipElement.className = "tooltiptext";
-		tooltipElement.innerHTML = tooltipText;
 		
 		newBar.id = resultsArray[i][0].replace(/\s/g, '') + "-" + cat;						// If the nametag contains whitespace, remove it to make the div id less of a headache.
 		newBar.className = "axis";
 		newBar.innerHTML = ('<p class="nametag">' + resultsArray[i][0] + '</p>');			// Leave whitespace in for the visible names, though.
+		newBar.title = getLabel(resultsArray[i][col], col);
 		document.getElementById(cat).appendChild(newBar);
 		
 		// Create and adjust both sides of the bar.
@@ -256,15 +285,13 @@ function openChart(evt, cat){
     document.getElementById(cat).style.display = "block";
     evt.currentTarget.className += " active";
 }
-
 $(document).ready(function () {
 
 	resultsArray = readData();
 
-	//  	First sort alphabetically
 	resultsArray.sort(sortFunction);
 	getArrayAvg();
-	//getArrayMed();
+	getArrayMed();
 	generateIndex();
 
 	resultsArray.sort(sortFunction);
